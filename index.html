@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bikram Sadhukhan — Cybersecurity & Full‑Stack Portfolio</title>
+  <meta name="description" content="Portfolio of Bikram Sadhukhan — BTech-MTech Cybersecurity student. VAPT, Digital Forensics, Secure DevOps, AI/ML forensics, and more." />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+
+  <!-- Styles: modern, minimal, glass, utility classes -->
+  <style>
+    /* ===== Reset & base ===== */
+    :root{
+      --bg:#0b1020;
+      --card:#0f1724;
+      --muted:#9aa4b2;
+      --accent:#6ee7b7;
+      --accent-2:#7dd3fc;
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.025);
+      --glass-border: rgba(255,255,255,0.06);
+      --max-w:1200px;
+      --mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(45,55,72,0.14), transparent),
+                  radial-gradient(900px 400px at 90% 90%, rgba(59,130,246,0.06), transparent),
+                  var(--bg);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:48px 24px;
+    }
+
+    /* Page container */
+    .container{
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display:grid;
+      grid-template-columns: 350px 1fr;
+      gap:28px;
+      align-items:start;
+    }
+
+    /* Sidebar */
+    .sidebar{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;
+      padding:22px;
+      border:1px solid var(--glass-border);
+      position:sticky;
+      top:24px;
+      height: calc(100vh - 48px);
+      overflow:auto;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    }
+    .avatar{
+      width:110px;height:110px;border-radius:18px;overflow:hidden;margin-bottom:14px;border:1px solid rgba(255,255,255,0.06);
+      display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    h1{font-size:20px;margin:6px 0}
+    .muted{color:var(--muted);font-size:13px}
+    .section-title{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:20px}
+
+    .contact-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+    .chip{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:var(--glass);border:1px solid var(--glass-border);font-size:13px}
+    .chip svg{opacity:0.9}
+
+    /* Main area */
+    .main{
+      min-height:60vh;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));
+      border-radius:18px;padding:26px;border:1px solid var(--glass-border);
+      box-shadow: 0 12px 40px rgba(2,6,23,0.6);
+    }
+
+    /* Hero */
+    .hero{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .intro{max-width:100%}
+    .title{font-size:28px;margin:0}
+    .subtitle{color:var(--muted);margin-top:6px}
+    .cta-row{display:flex;gap:12px;margin-top:16px}
+    .btn{padding:10px 16px;border-radius:10px;border:1px solid transparent;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#072018;font-weight:600;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid var(--glass-border;color:var(--muted));color:var(--accent-2)}
+
+    /* Cards grid */
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid var(--glass-border)}
+    .card h3{margin:0 0 8px}
+    .skill-badges{display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);}
+
+    /* Terminal / Projects */
+    .terminal{
+      background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.75));
+      border-radius:8px;padding:12px;font-family:var(--mono);font-size:13px;color:#c7d2fe;border:1px solid rgba(100,116,139,0.06);
+      min-height:120px;overflow:auto
+    }
+    .terminal .prompt{color:#94a3b8}
+    .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .project{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.03)}
+    .project h4{margin:0 0 6px}
+    .project p{margin:0;color:var(--muted);font-size:13px}
+
+    /* Timeline */
+    .timeline{margin-top:12px;border-left:2px dashed rgba(255,255,255,0.03);padding-left:14px}
+    .timeline-item{margin-bottom:12px}
+    .timeline-item .meta{font-size:12px;color:var(--muted)}
+
+    /* Footer */
+    footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* Responsive */
+    @media (max-width:990px){
+      .container{grid-template-columns:1fr;}
+      .sidebar{position:relative;height:auto}
+      .intro{max-width:100%}
+      .project-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:600px){
+      .project-grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .title{font-size:22px}
+    }
+
+    /* Fancy micro interactions */
+    .glow{position:relative}
+    .glow::after{content:'';position:absolute;inset: -40% -40% -40% -40%;background:radial-gradient(circle at 20% 20%, rgba(109,40,217,0.06), transparent 8%), radial-gradient(circle at 80% 80%, rgba(34,211,238,0.03), transparent 15%);pointer-events:none;mix-blend-mode:screen}
+
+    /* Accessibility focus */
+    a:focus, button:focus{outline:3px solid rgba(125,211,252,0.12);outline-offset:3px}
+
+    /* Advanced infra panel */
+    .infra{
+      margin-top:16px;padding:14px;border-radius:14px;border:1px dashed rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)
+    }
+    .infra ul{margin:8px 0 0 18px;color:var(--muted)}
+
+    /* Animated background shapes */
+    .bg-shapes{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:0}
+    .shape{position:absolute;border-radius:50%;filter:blur(40px);opacity:0.12}
+    .shape.one{width:360px;height:360px;left:-40px;top:-40px;background:linear-gradient(135deg,var(--accent),#60a5fa)}
+    .shape.two{width:260px;height:260px;right:-60px;bottom:-80px;background:linear-gradient(135deg,#7c3aed,#0ea5e9)}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal .sheet{background:var(--card);border-radius:12px;padding:18px;max-width:720px;width:100%;border:1px solid var(--glass-border)}
+
+    /* little utilities */
+    .flex{display:flex}.center{align-items:center;justify-content:center}
+    .space-between{display:flex;justify-content:space-between;align-items:center}
+
+  </style>
+</head>
+<body>
+  <div class="bg-shapes" aria-hidden>
+    <div class="shape one"></div>
+    <div class="shape two"></div>
+  </div>
+
+  <div class="container" role="main">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Sidebar with contact and skills">
+      <div class="avatar">
+  <img src="https://media.licdn.com/dms/image/v2/D4D03AQHq8QBUwcAnRQ/profile-displayphoto-shrink_400_400/B4DZXmbyslG8Ak-/0/1743327800644?e=1760572800&v=beta&t=9BqMoUszknyhoHw49zL4fIf_cITzm3WEb1iOHXcU2x0" 
+       alt="Bikram Sadhukhan profile photo">
+
+          <rect width="120" height="120" rx="18" fill="url(#g)"/>
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="#6EE7B7"/>
+              <stop offset="1" stop-color="#7DD3FC"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <h1>Bikram Sadhukhan</h1>
+      <div class="muted">Cybersecurity • VAPT • Digital Forensics • Secure Coding • AI • Drone Security</div>
+
+      <div class="section-title">Contact</div>
+      <div class="contact-list">
+        <div class="chip" title="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 8.2V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.2M3 8.2L12 13l9-4.8M3 8.2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2.2" stroke="white" stroke-opacity="0.8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          bikramsadhukhan505@gmail.com
+        </div>
+      </div>
+
+      <div class="section-title">Education</div>
+      <div class="chip">National Forensic Sciences University <br>BTech-MTech (2022-2027)</div>
+
+      <div class="section-title">Achievements</div><hr>
+      <div class="muted">Multiple CTF rankings & 2 Hackathon wins <br>CNSP and CAP exam by SecOps Group <br>Multiple Ideathons and Competitve Exams</div>
+
+      <div class="section-title">Download</div>
+      <div style="margin-top:8px;display:flex;gap:8px">
+        <button id="downloadBtn" class="btn">Download CV</button>
+      </div>
+
+      
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main" aria-label="Main content">
+
+      <section class="hero">
+        <div class="intro">
+          <div class="title">Building scalable and secure digital experiences.</div>
+          <div class="subtitle">I design resilient infrastructure, conduct VAPT, automate digital forensic workflows and build secure web apps. I blend systems thinking with hands-on pentesting and data-driven ML forensics.</div>
+        </div>
+      </section>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Experience</h3>
+          <div class="muted">Security Intern — CID Gujarat</div>
+          <p>Built forensic automation tools (Python) that improved investigation speed and standardised evidence handling.</p>
+          <div style="height:8px"></div>
+          <div class="muted">Security Analyst Intern — Securis360</div>
+          <p>Performed VAPT, secure config reviews, automation and SEBI CSCRF reporting for multiple clients.</p>
+		  <div style="height:8px"></div>
+          <div class="muted">Project Intern — NFSU</div>
+          <p>Performed data preprocessing and AI based dashboard for anomaly detection</p>
+        </div>
+
+        <div class="card">
+          <h3>Projects</h3>
+          <div class="timeline-item">
+            <div class="project">
+              <h4>SoumiTattva (Mental Health)<br>[2nd runner up at AIT Hackathon]</h4>
+              <p>Secure web app with AI module for risk detection. Session-safe auth and admin analytics.</p>
+            </div>
+            <div class="project">
+              <h4>Netra (Chain of Custody)
+                <br>[1st runner up at GIET Hackathon]
+              </h4>
+              <p>Blockchain-based tamper-proof evidence management (Flask, MongoDB) + AI chatbot for metadata search.</p>
+            </div>
+            <div class="project">
+              <h4>Anti Money Laundering Tool</h4>
+              <p>Open-source pipeline (Python, Neo4j, SQL) for detecting suspicious financial transaction graphs.</p>
+            </div>
+            <div class="project">
+              <h4>AI Journalist
+                <br>[5th at IEM Hackathon]
+              </h4>
+              <p>Web scraping from news portals and sentiment analysis to create heatmaps of crimes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Skills & Tools</h3>
+          <div class="skill-badges" style="margin-top:10px">
+            <span class="badge">Java</span>
+			<span class="badge">Python</span>
+			<span class="badge">SQL</span>
+			<span class="badge">MongoDB</span>
+			<span class="badge">C++</span>
+			<span class="badge">PHP</span>
+			<span class="badge">Bash</span>
+			<span class="badge">Assembly</span>
+
+			<span class="badge">Burp Suite</span>
+			<span class="badge">Wireshark</span>
+			<span class="badge">Nessus</span>
+			<span class="badge">FTK Imager</span>
+			<span class="badge">Nmap</span>
+			<span class="badge">MobSF</span>
+			<span class="badge">Neo4j</span>
+
+			<span class="badge">VAPT</span>
+			<span class="badge">SOC 2 Audit</span>
+			<span class="badge">SDLC</span>
+			<span class="badge">Digital Forensics</span>
+
+			<span class="badge">Linux</span>
+			<span class="badge">Windows</span>
+
+			<span class="badge">KQL</span>
+			<span class="badge">Bash (Scripting)</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Research Work</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="meta">Anti Money Laundering [FINCON 2025]</div><hr>
+              <div><strong>Rupiya - AML Open Source Tool</strong> <br>
+				<a href="https://drive.google.com/file/d/1utkAqSbLQtshFkonFUvW5FaY-2W74M0U/view?usp=sharing" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   style="text-decoration: none; color: inherit;">
+  View Paper
+</a>
+
+			</div>
+            </div>
+            <div class="timeline-item">
+              <div class="meta">Drone Forensic [DSCI 2025]
+</div><hr>
+              <div><strong>Jammer-Hunting Drones: A Swarm-Based
+Autonomous Response to GPS and IoT Signal
+Disruption</strong><br><a href="https://drive.google.com/file/d/1wSuiiyjCzLCrwbv2E7IcaCHrVbgkLXUN/view?usp=sharing" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   style="text-decoration: none; color: inherit;">
+  View Paper
+</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<div class="infra">
+  <h3>Community Work</h3>
+  <p class="muted">This portfolio lists some of the community contributions and leadership roles I have taken. Each bullet highlights an initiative, responsibility, or impact I have made.</p>
+  <ul>
+    <li><strong>Event Promotion:</strong> I did LinkedIn handling for <em>GDG Cloud Gandhinagar Day 2024</em> and <em>Open Source Weekend Day 2025</em>.</li>
+    <li><strong>Leadership:</strong> I led <em>The Hackers Meetup NFSU Chapter</em> in 2024.</li>
+    <li><strong>Documentation & Sessions:</strong> I am part of the documentation team of <em>The Hackers Meetup Ahmedabad Chapter</em> and have taken 3 sessions on <em>CyberSecurity News Affairs</em>.</li>
+    <li><strong>Forensics Communities:</strong> I have been part of multiple forensic communities, which are now <em>MSME registered</em> and have grown into startups in the forensic space.</li>
+  </ul>
+</div>
+
+
+
+
+      <footer>
+        <div>Built by Bikram</div>
+      </footer>
+    </main>
+  </div>
+
+
+  <!-- Scripts: interactions, download, small animations -->
+  <script>
+    // small helper
+    const $ = (sel, ctx=document) => ctx.querySelector(sel);
+
+    // Modal handling
+    const modal = $('#modal');
+    const hireBtn = $('#hireBtn');
+    const closeModal = $('#closeModal');
+    hireBtn.addEventListener('click', ()=>{ modal.style.display='flex'; modal.setAttribute('aria-hidden','false'); });
+    closeModal.addEventListener('click', ()=>{ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); } });
+
+    // Contact form: fake-send (no server in single-file)
+    const form = $('#contactForm');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = new FormData(form);
+      const out = {};
+      data.forEach((v,k)=>out[k]=v);
+      // present a copy-to-clipboard summary to emulate send
+      const text = `Contact request from ${out.name} <${out.email}>:\n\n${out.message}`;
+      navigator.clipboard.writeText(text).then(()=>{
+        alert('Message copied to clipboard (demo). Paste it in your mail client to send.');
+        modal.style.display='none'; modal.setAttribute('aria-hidden','true');
+      }).catch(()=>{ alert('Clipboard unavailable. Please email directly.'); modal.style.display='none'; });
+    });
+
+    // Theme toggle (simple inversion)
+    const themeBtn = $('#themeBtn');
+    let dark = true;
+    themeBtn.addEventListener('click', ()=>{
+      dark = !dark;
+      if(!dark){
+        document.documentElement.style.setProperty('--bg','#f7fafc');
+        document.documentElement.style.setProperty('--card','#ffffff');
+        document.documentElement.style.setProperty('--muted','#374151');
+        document.documentElement.style.setProperty('--glass-border','rgba(2,6,23,0.04)');
+        document.body.style.color='#091625';
+        themeBtn.setAttribute('aria-pressed','true');
+      } else {
+        document.documentElement.style.setProperty('--bg','#0b1020');
+        document.documentElement.style.setProperty('--card','#0f1724');
+        document.documentElement.style.setProperty('--muted','#9aa4b2');
+        document.documentElement.style.setProperty('--glass-border','rgba(255,255,255,0.06)');
+        document.body.style.color='#e6eef6';
+        themeBtn.setAttribute('aria-pressed','false');
+      }
+    });
+
+    // Fake download of CV using embedded PDF (from user upload) if available
+    const downloadBtn = $('#downloadBtn');
+    downloadBtn.addEventListener('click', async ()=>{
+      // this demo will synthesize a .txt version of key resume info
+      const resume = `Bikram Sadhukhan\nEmail: bikramsadhukhan505@gmail.com\nPhone: +91 9734464708\nLinkedIn: https://www.linkedin.com/in/bikram-sadhukhan-8a78ab22a/\n\nSkills:\n- VAPT, Digital Forensics, Python, Java, Neo4j, Burp, Wireshark\n\nProjects:\n- SoumiTattva, Netra, AML Tool\n`;
+      const blob = new Blob([resume], {type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'Bikram_Sadhukhan_resume.txt'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+
+    // Download project zip placeholder
+    $('#downloadPo').addEventListener('click', ()=>{
+      alert('This demo is single-file. To download project artifacts please visit the GitHub repo link (add repo)');
+    });
+
+    // Terminal demo: typewriter effect
+    const terminal = $('#terminal');
+    const lines = [
+      '$ git clone https://github.com/bikram-sadhukhan/portfolio',
+      '$ cd portfolio',
+      '$ ./deploy.sh --env=prod',
+      'Deployment successful — All systems green. \nPrometheus: 2 alerts (resolved).',
+    ];
+    let li = 0;
+    function typeNext(){
+      if(li>=lines.length) return;
+      const el = document.createElement('div');
+      el.textContent = lines[li]; terminal.appendChild(el); terminal.scrollTop = terminal.scrollHeight; li++;
+      setTimeout(typeNext, 900);
+    }
+    setTimeout(typeNext, 700);
+
+    // Subtle parallax for shapes
+    document.addEventListener('mousemove', (e)=>{
+      const x = e.clientX/window.innerWidth - 0.5;
+      const y = e.clientY/window.innerHeight - 0.5;
+      document.querySelectorAll('.shape').forEach((s,i)=>{
+        const mul = i===0? -30: 30;
+        s.style.transform = `translate(${x*mul}px, ${y*mul}px)`;
+      });
+    });
+
+    // Accessibility: prefer-reduced-motion
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('.shape').forEach(s=>s.style.transition='none');
+    }
+
+    // Tiny analytics (local only) to track clicks as demo
+    const analytics = {hits:0};
+    document.addEventListener('click', ()=>{ analytics.hits++; localStorage.setItem('demo_analytics', JSON.stringify(analytics)); });
+
+  </script>
+
+  <!-- Schema: small JSON-LD for SEO if hosted -->
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Person","name":"Bikram Sadhukhan","jobTitle":"Cybersecurity Student","email":"mailto:bikramsadhukhan505@gmail.com","url":"https://www.linkedin.com/in/bikram-sadhukhan-8a78ab22a/","knowsAbout":["Vulnerability Assessment","Digital Forensics","Kubernetes","CI/CD"]}
+  </script>
+
+</body>
+</html>
